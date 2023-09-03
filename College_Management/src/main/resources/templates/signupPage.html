@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Signup Page</title>
+<link th:href="@{/css/signup.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<h1>Signup Page</h1>
+			<form th:action="@{/register}" method="post" th:object="${signup}">
+				<input type="email" id="email" th:field="*{email}"
+					placeholder="Enter your email"> <input type="password"
+					id="passwd" th:field="*{passwd}" placeholder="Enter your password">
+				<input type="password" id="confirmPwd" th:field="*{confirmPwd}"
+					placeholder="Confirm your password">
+				<div
+					th:if="${#fields.hasErrors('email') && !#fields.hasErrors('passwd') && !#fields.hasErrors('confirmPwd')}"
+					th:errors="*{email}" class="error-message"></div>
+				<div
+					th:if="${#fields.hasErrors('passwd') && !#fields.hasErrors('confirmPwd')}"
+					th:errors="*{passwd}" class="error-message"></div>
+				<div th:if="${#fields.hasErrors('confirmPwd')}"
+					th:errors="*{confirmPwd}" class="error-message"></div>
+				<button type="submit">Signup</button>
+			</form>
+		</div>
+	</div>
+	<script th:src="@{/errorHandling.js}" type="text/javascript"></script>
+</body>
+</html>

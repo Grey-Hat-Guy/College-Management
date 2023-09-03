@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request Form</title>
+    <link rel="stylesheet" th:href="@{/css/leaverequestform.css}">
+</head>
+<body>
+	<div class="container">
+        <h1>Leave Request Form</h1>
+        
+        <div th:if="${hasRequest}">
+            <p>You have already submitted a leave request.</p>
+            <a th:href="@{/view-leave-request}">View Leave Request Details</a>
+        </div>
+        
+        <div th:unless="${hasRequest}">
+	        <form th:action="@{/submit-leave}" method="post" th:object="${leaverequest}">
+	            <div class="input-group">
+	                <label for="studentName">Student Name:</label>
+	                <input type="text" id="studentName" name="studentName" th:field="*{name}" required>
+	            </div>
+	
+	            <div class="input-group">
+	                <label for="regNo">Register Number:</label>
+	                <input type="text" id="regNo" name="regNo" th:field="*{regno}" required>
+	            </div>
+	
+	            <div class="input-group">
+	                <label for="department">Department:</label>
+	                <input type="text" id="department" name="department" th:field="*{dep}" required>
+	            </div>
+	            
+				<div class="input-group">
+				    <label for="startDate">Start Date:</label>
+				    <input type="date" id="startDate" name="startDate" th:field="*{startDate}" th:pattern="yyyy-MM-dd" required>
+				</div>
+
+				<div class="input-group">
+				    <label for="endDate">End Date:</label>
+				    <input type="date" id="endDate" name="endDate" th:field="*{endDate}" th:pattern="yyyy-MM-dd" required>
+				</div>
+				
+	            <div class="input-group">
+	                <label for="reason">Reason:</label>
+	                <textarea id="reason" name="reason" rows="4" th:field="*{reason}" required></textarea>
+	            </div>
+	
+	            <button type="submit">Submit</button>
+	        </form>
+		</div>
+		
+        <form th:action="@{/withdraw-leave}" method="post">
+            <button type="submit" class="withdraw-button" th:object="${leaverequest}" th:if="${leaveRequest != null}">Withdraw Request</button>
+        </form>
+        
+    </div>
+</body>
+</html>

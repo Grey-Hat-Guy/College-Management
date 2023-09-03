@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>DashBoard</title>
+    <link rel="stylesheet" th:href="@{/css/admindashboard.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <ul>
+                <li id="title">DashBoard</li>
+                <li><a th:href="@{/admin-view-requests}">Leave</a></li>
+                <li><a th:href="@{/adminlogin}">Logout</a></li>
+            </ul>
+            <div class="content">
+                <div class="btn">
+                    <input type="search" name="" id="search_detail" placeholder="Search...">
+                    <button type="button" id="search" onclick="performSearch()">Search</button>
+                    <button type="button" id="download">Download</button>
+                    <div class="modal" id="modal">
+                        <div class="modal-content">
+                            <h2 id="detail_title">Select Details to Download</h2>
+                            <label>
+                                <input type="checkbox" name="name"><span class="checkmark"></span> Name
+                            </label>
+                            <label>
+                                <input type="checkbox" name="regno"><span class="checkmark"></span> Register Number
+                            </label>
+                            <label>
+                                <input type="checkbox" name="degree"><span class="checkmark"></span> Degree
+                            </label>
+                            <label>
+                                <input type="checkbox" name="fathername"><span class="checkmark"></span> Father Name
+                            </label>
+                            <label>
+                                <input type="checkbox" name="mothername"><span class="checkmark"></span> Mother Name
+                            </label>
+                            <label>
+                                <input type="checkbox" name="address"><span class="checkmark"></span> Address
+                            </label>
+                            <label>
+                                <input type="checkbox" name="mobile"><span class="checkmark"></span> Contact
+                            </label>
+                            <label>
+                                <input type="checkbox" name="percent_10"><span class="checkmark"></span> 10<sup>th</sup>
+                                Percentage
+                            </label>
+                            <label>
+                                <input type="checkbox" name="yearofpass_10"><span class="checkmark"></span> 10<sup>th</sup> Year
+                                of pass
+                            </label>
+                            <label>
+                                <input type="checkbox" name="percent_12"><span class="checkmark"></span> 12<sup>th</sup>
+                                Percentage
+                            </label>
+                            <label>
+                                <input type="checkbox" name="yearofpass_12"><span class="checkmark"></span> 12<sup>th</sup> Year
+                                of pass
+                            </label>
+                            <label>
+                                <input type="checkbox" name="aadhar_num"><span class="checkmark"></span> Aadhar Number
+                            </label>
+                            <button id="modal-close">Close</button>
+                            <button id="modal-download">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <table id="studentTable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Register Number</th>
+                        <th>Degree/Branch</th>
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>10<sup>th</sup> Percentage</th>
+                        <th>10<sup>th</sup> Year of Pass</th>
+                        <th>12<sup>th</sup> Percentage</th>
+                        <th>12<sup>th</sup> Year of Pass</th>
+                        <th>Aadhar Number</th>
+                    </tr>
+                     <tbody id="studentTableBody">
+                     	 <tr th:replace="fragments/studentTableDetail :: studentList"></tr>
+                     </tbody>
+    </table>
+    
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+    	async function performSearch() {
+        const searchTerm = document.getElementById('search_detail').value.trim();
+        if(searchTerm === ""){
+        	return ;
+        }
+        try {
+            const response = await fetch('/admindashboard?searchTerm=' + searchTerm);
+            const data = await response.text();
+            document.getElementById('studentTableBody').innerHTML = data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    	const modal = document.getElementById('modal');
+        const downloadButton = document.getElementById('download');
+        const closeButton = document.getElementById('modal-close');
+        const downloadSelectedButton = document.getElementById('modal-download');
+        
+    downloadButton.addEventListener('click', function () {
+        modal.style.display = 'flex';
+    });
+
+    closeButton.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    downloadSelectedButton.addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        const selectedItems = Array.from(checkboxes).map(checkbox => checkbox.name);
+
+        const queryParams = selectedItems.map(item => `selectedItems=${encodeURIComponent(item)}`).join('&');
+        
+        const downloadUrl = `/download-details?${queryParams}`;
+        
+        window.location.href = downloadUrl;
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>DashBoard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <ul class="navbar">
+                <li id="title">DashBoard</li>
+                <li><a th:href="@{/leave-request}">Request Leave</a></li>
+                <li><a th:href="@{/editprofile}">Edit Profile</a></li>
+                <li><a th:href="@{/login}">Log Out</a></li>
+            </ul>
+            <p id="welcome">Welcome <span th:text="${#strings.arraySplit(studentreg.name, ' ')[0]}"></span>!</p>
+            <div class="tablecontent">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td class="data-cell" th:text="${studentreg.name}"></td>
+                    </tr>
+                    <tr>
+                        <th>Register Number</th>
+                        <td class="data-cell" th:text="${studentreg.regno}"></td>
+                    </tr>
+                    <tr>
+                        <th>Father Name</th>
+                        <td class="data-cell" th:text="${studentreg.fathername}"></td>
+                    </tr>
+                    <tr>
+                        <th>Mother Name</th>
+                        <td class="data-cell" th:text="${studentreg.mothername}"></td>
+                    </tr>
+                    <tr>
+                        <th>Degree/Branch</th>
+                        <td class="data-cell" th:text="${studentreg.degree}"></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td class="data-cell" th:text="${studentreg.address}"></td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Number</th>
+                        <td class="data-cell" th:text="${studentreg.mobile}"></td>
+                    </tr>
+                    <tr>
+                        <th>10<sup>th</sup> Percentage </th>
+                        <td class="data-cell" th:text="${studentreg.percent_10}"></td>
+                    </tr>
+                    <tr>
+                        <th>Year of passing</th>
+                        <td class="data-cell" th:text="${studentreg.yearofpass_10}"></td>
+                    </tr>
+                    <tr>
+                        <th>12<sup>th</sup> Percentage </th>
+                        <td class="data-cell" th:text="${studentreg.percent_12}"></td>
+                    </tr>
+                    <tr>
+                        <th>Year of passing</th>
+                        <td class="data-cell" th:text="${studentreg.yearofpass_12}"></td>
+                    </tr>
+                    <tr>
+                        <th>Aadhar Number</th>
+                        <td class="data-cell" th:text="${studentreg.aadhar_num}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap')
+	;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E6F7FF;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1 {
+    color: #333333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #333333;
+    width: 40%;
+    padding-right: 10px;
+}
+
+input[type="text"],
+textarea,
+select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 15px;
+}
+
+/* CSS for date input fields */
+.input-group input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Add any additional styling you desire */
+
+
+button[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Adjust the style for the withdrawal button */
+form:last-of-type {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.withdraw-button {
+    background-color: #888888;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.withdraw-button:hover {
+    background-color: #666666;
+}
+
+

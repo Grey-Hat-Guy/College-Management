@@ -1,0 +1,14 @@
+    <tr th:fragment="studentList" th:each="studentDetails : ${studentDetailList}">
+        <td th:text="${studentDetails.name}"></td>
+        <td th:text="${studentDetails.regno}"></td>
+        <td th:text="${studentDetails.degree}"></td>
+        <td th:text="${studentDetails.fathername}"></td>
+        <td th:text="${studentDetails.mothername}"></td>
+        <td th:text="${studentDetails.address}"></td>
+        <td th:text="${studentDetails.mobile}"></td>
+        <td th:text="${studentDetails.percent_10}"></td>
+        <td th:text="${studentDetails.yearofpass_10}"></td>
+        <td th:text="${studentDetails.percent_12}"></td>
+        <td th:text="${studentDetails.yearofpass_12}"></td>
+        <td th:text="${studentDetails.aadhar_num}"></td>
+    </tr>

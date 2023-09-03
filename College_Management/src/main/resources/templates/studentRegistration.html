@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Registration</div>
+        <div class="content">
+            <form th:action="@{/registration}" method="post" th:object="${studentreg}">
+                <p th:if="${#fields.hasErrors('regno')}" th:errors="*{regno}" 
+                   class="error-message"></p>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Full Name</span>
+                        <input type="text" th:field="*{name}" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Register Number</span>
+                        <input type="text" th:field="*{regno}" placeholder="Enter your register number" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Father Name</span>
+                        <input type="text" th:field="*{fathername}" placeholder="Enter your father name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Mother Name</span>
+                        <input type="text" th:field="*{mothername}" placeholder="Enter your mother name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Address</span>
+                        <input type="text" th:field="*{address}" placeholder="Enter your address" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" th:field="*{mobile}" placeholder="Enter your number" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">10<sup>th</sup> Percentage</span>
+                        <input type="text" th:field="*{percent_10}" placeholder="Enter the percentage" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">10<sup>th</sup> Year of Passing</span>
+                        <input type="text" th:field="*{yearofpass_10}" placeholder="Enter the year" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">12<sup>th</sup>/ Diploma Percentage</span>
+                        <input type="text" th:field="*{percent_12}" placeholder="Enter the percentage" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">12<sup>th</sup>/ Diploma Year of Passing</span>
+                        <input type="text" th:field="*{yearofpass_12}" placeholder="Enter the year" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Degree with Branch</span>
+                        <input type="text" th:field="*{degree}" placeholder="B.Tech/CSE" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Aadhar Number</span>
+                        <input type="text" th:field="*{aadhar_num}" placeholder="xxxx xxxx xxxx" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Sumbit">
+                </div>
+            </form>
+        </div>
+    </div>
+	<script type="text/javascript" th:src="@{/errorHandling.js}"></script>
+</body>
+
+</html>
